@@ -189,7 +189,7 @@ class Message(object):
     def parse_message(self):
         msg_type = self._message['Body'].get('Type')
         if msg_type is not None:
-            if msg_type == 'SubscriptionConfirmation'
+            if msg_type == 'SubscriptionConfirmation':
                 urllib2.urlopen(self._message['Body']['SubscribeURL'])
                 return {}
         return json.loads(json.loads(self._message["Body"])["Message"])

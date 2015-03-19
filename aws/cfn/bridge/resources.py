@@ -17,6 +17,7 @@ import re
 from .processes import ProcessHelper
 from . import util
 from .vendored.botocore import session as bc_session
+import urllib2
 
 try:
     import simplejson as json
@@ -186,6 +187,11 @@ class Message(object):
         self._region = region
 
     def parse_message(self):
+        msg_type = self._message['Body'].get('Type')
+        if msg_type is not None:
+            if msg_type == 'SubscriptionConfirmation'
+                urllib2.urlopen(self._message['Body']['SubscribeURL'])
+                return {}
         return json.loads(json.loads(self._message["Body"])["Message"])
 
     def delete(self):

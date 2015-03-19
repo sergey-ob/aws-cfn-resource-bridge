@@ -187,10 +187,10 @@ class Message(object):
         self._region = region
 
     def parse_message(self):
-        msg_type = self._message['Body'].get('Type')
+        msg_type = json.loads(self._message['Body']).get('Type')
         if msg_type is not None:
             if msg_type == 'SubscriptionConfirmation':
-                urllib2.urlopen(self._message['Body']['SubscribeURL'])
+                urllib2.urlopen(json.loads(self._message['Body'])['SubscribeURL'])
                 return {}
         return json.loads(json.loads(self._message["Body"])["Message"])
 
